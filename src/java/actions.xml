@@ -1,0 +1,103 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<!-- Author: 84911 -->
+ 
+<struts>
+    <package name="allthing" namespace="/" extends="struts-default">
+        <!-- user action here -->
+        <action name="login" class="ActionHandler.LoginAction">
+            <result name="success" type="redirect">/index</result>
+            <result name="error">Login.jsp</result>  
+        </action>
+        <action name="logout" class="ActionHandler.LoginAction"  method="logout">
+            <result name="success">Login.jsp</result>  
+        </action>
+        <action name="signup" class="ActionHandler.LoginAction"  method="signup">
+            <result name="success">Login.jsp</result>  
+            <result name="error">Resgister.jsp</result>  
+        </action>
+        <action name="getprofile" class="ActionHandler.LoginAction"  method="getprofile">
+            <result name="success">MyProfile.jsp</result>  
+        </action>
+        <action name="updateprofile" class="ActionHandler.LoginAction"  method="updateprofile">
+            <result name="success" type="redirect">getprofile</result>  
+            <result name="error" type="redirect">getprofile</result>  
+        </action>
+        <!-- user action end -->
+
+        <!-- BUYLOG START-->
+        <action name="getbuyloguser" class="ActionHandler.buylogAction" >
+            <result name="success" >buylog.jsp</result>  
+            <result name="error" > buylog.jsp</result>  
+        </action>
+        <action name="getbuylogall" class="ActionHandler.buylogAction" method="getalllog">
+            <result name="success" >buylog.jsp</result>  
+            <result name="error" >buylog.jsp</result>  
+        </action>
+        <action name="buyproduct" class="ActionHandler.buylogAction" method="addlog">
+            <result name="success" type="redirect">getbuyloguser</result>  
+            <result name="error" type="redirect">cart</result>  
+        </action>
+        <!-- BUYLOG END -->
+        
+        <!-- Product action -->
+        <action name="index" class="ActionHandler.AllProductAction" >
+            <result name="success">index.jsp</result>  
+        </action>
+        <action name="findproducts" class="ActionHandler.AllProductAction" method="findproducts">
+            <result name="success">index.jsp</result>  
+        </action>
+        <action name="item" class="ActionHandler.GetProductAction" >
+            <result name="success">ItemDetail.jsp</result>  
+        </action>
+        
+        <!-- cart action here -->
+        <action name="cart" class="ActionHandler.CartAction" >
+            <result name="success">cart.jsp</result>  
+        </action>
+        <action name="removecart" class="ActionHandler.CartAction"  method="remove">
+            <result name="success" type="redirect">/cart</result>  
+        </action>
+        <action name="addtocart" class="ActionHandler.GetProductAction"  method="addtocart">
+            <result name="success" type="redirect">/cart</result>  
+        </action>
+        <!-- cart action end -->
+        <!-- ADMIN ACTION -->
+        <action name="addproductview" class="ActionHandler.ProductAction" >
+            <result name="success">AddProduct.jsp</result>  
+        </action>
+        <action name="manageproducts" class="ActionHandler.AdminAction"  method="showproducts">
+            <result name="success" >ProductManager.jsp</result>  
+        </action>
+        <action name="manageusers" class="ActionHandler.AdminAction"  method="showusers">
+            <result name="success" >UserManager.jsp</result>  
+        </action>
+        <action name="addproduct" class="ActionHandler.ProductAction"  method="addproduct">
+            <result name="success" type="redirect">manageproducts</result>  
+            <result name="error" type="redirect">addproductview</result>  
+        </action>
+        <action name="deleteproduct" class="ActionHandler.ProductAction"  method="deleteproduct">
+            <result name="success" type="redirect">manageproducts</result>  
+            <result name="error" type="redirect">manageproducts</result>  
+        </action>
+        <action name="updateproduct" class="ActionHandler.ProductAction"  method="updateproduct">
+            <result name="success" type="redirect">manageproducts</result>  
+            <result name="error" type="redirect">manageproducts</result>  
+            <result name="input" type="redirect">manageproducts</result>  
+        </action>
+        <action name="adduser" class="ActionHandler.UserAction"  method="adduser">
+            <result name="success" type="redirect">manageusers</result>  
+            <result name="error" >AddUser.jsp</result>  
+        </action>
+        <action name="deleteuser" class="ActionHandler.UserAction"  method="deleteuser">
+            <result name="success" type="redirect">manageusers</result>  
+        </action>
+        <action name="updateuser" class="ActionHandler.UserAction"  method="updateuser">
+            <result name="success" type="redirect">manageusers</result>  
+        </action>
+        <!-- ADMIN ACTION -->
+
+    </package>
+</struts>
